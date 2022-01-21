@@ -7,7 +7,6 @@ const cover = document.getElementById("cover");
 let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let player = 1;
 drawBoard();
-// setTimeout();
 canvas.onclick = event => {
     let x = event.clientX - ctx.canvas.offsetLeft;
     let y = event.clientY - ctx.canvas.offsetTop;
@@ -26,9 +25,7 @@ canvas.onclick = event => {
     } else if (y > 400 && y < 600) {
         y = 500;
     }
-    console.log(x, y);
     boxNum = boxIdx(x, y);
-    console.log(boxNum);
     for (let i = 0; i < 9; i++) {
         if (boxNum == i) {
             if (board[i] == 0) { // 빈 칸
@@ -173,107 +170,130 @@ function check(p) {
                 btn.classList.remove("hide");
                 cover.classList.replace("open", "close");
                 break;
+            default:
+                if(board.indexOf(0) === -1) {
+                    h1.innerText = `무승부`;
+                    btn.classList.remove("hide");
+                    cover.classList.replace("open", "close");
+                }
+                break;
         }
     }, 1000);
 }
 let num = 0;
 function winner1() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(0, 100);
-    ctx.lineTo(num, 100);
-    ctx.stroke();
-
-    requestAnimationFrame(winner1);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 100);
+        ctx.lineTo(num, 100);
+        ctx.stroke();
+        
+        requestAnimationFrame(winner1);
+    }
 }
 function winner2() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(0, 300);
-    ctx.lineTo(num, 300);
-    ctx.stroke();
-
-    requestAnimationFrame(winner2);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 300);
+        ctx.lineTo(num, 300);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner2);
+    }
 }
 function winner3() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(0, 500);
-    ctx.lineTo(num, 500);
-    ctx.stroke();
-
-    requestAnimationFrame(winner3);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 500);
+        ctx.lineTo(num, 500);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner3);
+    }
 }
 function winner4() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(100, 0);
-    ctx.lineTo(100, num);
-    ctx.stroke();
-
-    requestAnimationFrame(winner4);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(100, 0);
+        ctx.lineTo(100, num);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner4);
+    }
 }
 function winner5() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(300, 0);
-    ctx.lineTo(300, num);
-    ctx.stroke();
-
-    requestAnimationFrame(winner5);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(300, 0);
+        ctx.lineTo(300, num);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner5);
+    }
 }
 function winner6() {
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(500, 0);
-    ctx.lineTo(500, num);
-    ctx.stroke();
-
-    requestAnimationFrame(winner6);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(500, 0);
+        ctx.lineTo(500, num);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner6);
+    }
 }
 function winner7() { // 0, 0, 600, 600
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(num, num);
-    ctx.stroke();
-
-    requestAnimationFrame(winner7);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(num, num);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner7);
+    }
 }
 function winner8() { // 600, 0, 0, 600
     num += 6;
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(600, 0);
-    ctx.lineTo(600 - num, num);
-    ctx.stroke();
-
-    requestAnimationFrame(winner8);
+    if(num <= 600) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(600, 0);
+        ctx.lineTo(600 - num, num);
+        ctx.stroke();
+    
+        requestAnimationFrame(winner8);
+    }
 }
 btn.addEventListener("click", () => {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     player = 1;
+    num = 0;
     h1.innerText = "";
     btn.classList.add("hide");
     cover.classList.replace("close", "open");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // ctx.fillStyle = "#fff";
-    // ctx.fillRect(0, 0, 800, 600);
-    // ctx.beginPath();
+    ctx.beginPath();
+    ctx.stroke();
     drawBoard();
 });
